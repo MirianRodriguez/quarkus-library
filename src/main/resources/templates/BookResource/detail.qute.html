@@ -1,0 +1,24 @@
+{#include Layouts/main}
+    {#content}
+
+        <div>
+
+            <h1>{book.getTitle()}</h1>
+
+            <p>
+                <strong>Autores:</strong> {book.getAuthorsNames()}
+            </p>
+
+            <p>
+                <strong>Año:</strong> {book.getPublicationYear()}
+            </p>
+
+            <p>
+                <strong>Género:</strong> {book.getGenre().getName() ?: "-"}
+            </p>
+
+            <a href="/books"  class="btn btn-primary">Volver</a>
+
+        </div>
+    {/content}
+{/include}

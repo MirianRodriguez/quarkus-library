@@ -1,0 +1,37 @@
+<form action="/books" method="get" class="mb-4">
+  <div class="row g-3">
+    <div class="col-12 col-md-4">
+      <label for="author" class="form-label">Autor</label>
+      <input
+        type="text"
+        id="author"
+        name="author"
+        class="form-control"
+        placeholder="Nombre o apellido"
+        value="{author}"
+      />
+    </div>
+
+    <div class="col-12 col-md-4">
+      <label for="genre" class="form-label">Género</label>
+      <input
+        type="text"
+        id="genre"
+        name="genre"
+        class="form-control"
+        placeholder="Género del libro"
+        value="{genre}"
+      />
+    </div>
+
+    <div class="col-12 col-md-4 d-flex align-items-end gap-2">
+      <button type="submit" class="btn btn-primary">
+        Buscar
+      </button>
+
+      <a href="/books" class="btn btn-secondary">
+        Limpiar
+      </a>
+    </div>
+  </div>
+</form>

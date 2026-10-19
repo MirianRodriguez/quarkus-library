@@ -1,0 +1,55 @@
+{#if totalPages > 1}
+<nav aria-label="Paginación">
+  <ul class="pagination pagination-sm justify-content-between justify-content-md-center mt-4">
+
+    {#if currentPage > 1}
+    <li class="page-item">
+      <a class="page-link" href="/books?page={currentPage - 1}">
+        <span class="page-previous-icon" aria-hidden="true"></span>
+        <span class="page-previous-text">Anterior</span>
+      </a>
+    </li>
+    {/if}
+
+    {#if !pages.contains(1)}
+    <li class="page-item">
+      <a class="page-link" href="/books?page=1">1</a>
+    </li>
+    <li class="page-item disabled">
+      <span class="page-link" aria-hidden="true">...</span>
+    </li>
+    {/if}
+
+    {#for page in pages}
+    <li class="page-item {#if currentPage == page}active{/if}">
+      <a class="page-link"
+         href="/books?page={page}"
+         {#if currentPage == page}aria-current="page"{/if}>
+        {page}
+      </a>
+    </li>
+    {/for}
+
+    {#if !pages.contains(totalPages)}
+    <li class="page-item disabled">
+      <span class="page-link" aria-hidden="true">...</span>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="/books?page={totalPages}">
+        {totalPages}
+      </a>
+    </li>
+    {/if}
+
+    {#if currentPage < totalPages}
+    <li class="page-item">
+      <a class="page-link" href="/books?page={currentPage + 1}">
+        <span class="page-next-text">Siguiente</span>
+        <span class="page-next-icon" aria-hidden="true"></span>
+      </a>
+    </li>
+    {/if}
+
+  </ul>
+</nav>
+{/if}

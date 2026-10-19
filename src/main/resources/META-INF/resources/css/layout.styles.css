@@ -1,0 +1,29 @@
+.main-h {
+	min-height: calc(100vh - 12.2rem);
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+@media (min-width: 1200px) {
+	main,
+	header,
+	footer .container {
+		margin-inline: 128px !important;
+	}
+
+	.navbar.o-header .header-container .navbar-collapse .navbar-content-extended {
+		max-width: 100% !important;
+	}
+}
+
+@media (min-width: 0px) and (max-width: 1200px) {
+	main,
+	header,
+	footer .container {
+		margin-inline: 1.25rem !important;
+	}
+
+	header {
+		margin-inline: 1rem !important;
+	}
+}

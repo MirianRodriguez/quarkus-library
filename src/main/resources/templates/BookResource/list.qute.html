@@ -1,0 +1,87 @@
+<!doctype html>
+{#include Layouts/main}
+{#content}
+
+<div>
+  <div style="display: flex; justify-content: space-between; align-items: center">
+    <h1>📚 Mi biblioteca</h1>
+    <button type="button" class="btn btn-primary" onclick="window.location.href = '/books/new'">
+      Nuevo libro
+    </button>
+  </div>
+
+  {#include BookResource/filtersBook
+      author=author
+      genre=genre
+  /}
+  
+  {#if !books.isEmpty()}
+  <div class="responsive-scroll" tabIndex="0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="tb-text">Título</th>
+          <th scope="col" class="tb-text">Autores</th>
+          <th scope="col" class="tb-text">Género</th>
+          <th scope="col" class="tb-text">Año de publicación</th>
+          <th scope="col" class="tb-actions">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {#for book in books}
+        <tr>
+          <td>{book.title}</td>
+          <td>{book.getAuthorsNames()}</td>
+          <td>{book.getGenre().getName()}</td>
+          <td>{book.publicationYear}</td>
+          <td>
+            <div class="d-flex gap-2">
+              <a class="btn btn-xs" aria-label="Ver" href="/books/{book.id}">
+                <span class="material-symbols-rounded o-icon" aria-hidden="true">
+                  visibility
+                </span>
+              </a>
+
+              <a class="btn btn-xs" aria-label="Editar" href="/books/{book.id}/edit">
+                <span class="material-symbols-rounded o-icon" aria-hidden="true">
+                  edit
+                </span>
+              </a>
+
+              <button type="button" class="btn btn-xs" aria-label="Borrar" onclick="deleteBook({book.id})">
+                <span class="material-symbols-rounded o-icon" aria-hidden="true">
+                  delete
+                </span>
+              </button>
+            </div>
+          </td>
+        </tr>
+        {/for}
+      </tbody>
+    </table>
+  </div>
+  {#include Shared/pagination
+      pages=pages
+      currentPage=currentPage
+      totalPages=totalPages
+  /}
+  {#else}
+  <p>No hay libros en la biblioteca.</p>
+  {/if}
+</div>
+{/content}
+{#scripts}
+<script>
+  async function deleteBook(bookId) {
+    const response = await fetch("/books/" + bookId, {
+      method: "DELETE"
+    });
+
+    if (response.ok) {
+      window.location.reload();
+    }
+  }
+</script>
+{/scripts}
+{/include}
+</div>
